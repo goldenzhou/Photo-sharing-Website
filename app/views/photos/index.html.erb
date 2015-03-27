@@ -1,0 +1,59 @@
+<% if params[:id] && @user %>
+  <% @title = @user.first_name + " " + @user.last_name %>
+  <% if @user.id == session[:user_id] %>
+    <div class="banner"><a href = "/photos/new" > New Photo </a> </div>
+  <% end %>
+    <div class="hh" > The photos of <%= @user.first_name %>  <%= @user.last_name %> are as follows: </div>
+  <% i = 1 %>
+  <% for photo in @user.photo do %>
+	  <div class= "phototitle"> Photo <%= i %> </div>
+	  <div class="img" id="img<%= photo.id%>"> <%= image_tag photo.file_name, :class => "image"%> </div>
+    <% count = 1 %>
+    <% for tag in photo.tag do %>
+        <%= javascript_tag :type => "text/javascript" do %>
+            console.log("rec<%=photo.id %><%= count%>");
+            var indexImage = document.getElementById("img<%= photo.id %>");
+            var rec<%=photo.id %><%= count%> = document.createElement("div");
+            rec<%=photo.id %><%= count%>.style.left = <%= tag.left %> + "px";
+            rec<%=photo.id %><%= count%>.style.top = <%=tag.top%> + "px";
+            rec<%=photo.id %><%= count%>.style.width = <%=tag.width%> + "px";
+            rec<%=photo.id %><%= count%>.style.height = <%=tag.height%> + "px";
+            rec<%=photo.id %><%= count%>.style.backgroundColor = 'transparent';
+            rec<%=photo.id %><%= count%>.style.position = "absolute";
+            rec<%=photo.id %><%= count%>.style.border = "1px solid #5050f0";
+            rec<%=photo.id %><%= count%>.style.color = "red";
+            indexImage.appendChild(rec<%=photo.id %><%= count%>);
+            rec<%=photo.id %><%= count%>.addEventListener("mouseover", mouseOver);
+            rec<%=photo.id %><%= count%>.addEventListener("mouseout", mouseOut);
+            function mouseOver() {
+                rec<%=photo.id %><%= count%>.textContent = '<%= User.find(tag.user_id).full_name %>';
+            }
+            function mouseOut() {
+                rec<%=photo.id %><%= count%>.textContent = "";
+            }
+        <% end %>
+        <% count = count + 1 %>
+    <% end %>
+    <% i = i + 1 %>
+    <p> Creation time: <%= photo.date_time.getlocal %> </p>
+    <div class= "addTag"><a href = "/photos/newTag/<%= photo.id %>" > Add a new tag? </a> </div>
+    <% if photo.comment.empty? %>
+   		  <div class="comment"> No comment. </div>
+        <table class="oddEven" cellspacing="0">
+        <tr><td class="newcomment"><a href = "/comments/new/<%= photo.id %>"> New Comment </a></td></tr>
+        </table>
+   	<% else %>
+        <table class="oddEven" cellspacing="0">
+          <tr class="header"><td class="user">Comments</td></tr>
+    	    <% for comm in photo.comment do %>
+            <tr> <td class="name"> <a href = "/photos/index/<%= comm.user_id %>" > <%= comm.user.first_name %>  <%= comm.user.last_name %> </a> <%= comm.date_time.getlocal %> : </td></tr>
+             <tr><td class="word"> <%= comm.comment %> </td></tr>
+    		  <% end %>
+          <tr><td class="newcomment"><a href = "/comments/new/<%= photo.id %>"> New Comment </a></td></tr>
+        </table>
+    <% end %>
+  <% end %>
+<% else %>
+  <div class="error"> The user does not exist! </div>
+<% end %>
+

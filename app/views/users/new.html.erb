@@ -1,0 +1,21 @@
+<% @title = "Registration" %>
+<div class="hh"> Please provide the information below in order to register: </div>
+
+<%= form_for(@user, method: :post, url: {action: :create}) do |form| %>
+   	  <div class="formrow"> <%= form.label(:first_name, "First Name:")%> </div> 
+   	  <div class="formrow"> <%= form.text_field(:first_name) %></div>
+   	  <div class="formrow"> <%= form.label(:last_name, "Last Name:")%>  </div> 
+   	  <div class="formrow"> <%= form.text_field(:last_name) %></div>
+   	  <div class="formrow"> <%= form.label(:login, "Login:")%>  </div> 
+   	  <div class="formrow"> <%= form.text_field(:login) %></div>
+   	  <div class="formrow"> <%= form.label(:password, "Password:")%>  </div> 
+   	  <div class="formrow"> <%= form.password_field(:password) %></div>
+   	  <div class="formrow"> <%= form.label(:password_confirmation, "Confirm Password:")%> </div> 
+   	  <div class="formrow"> <%= form.password_field(:password_confirmation) %></div>
+   	  <div class="formrow"> <%= form.submit "Register" %> </div>
+<% end %>
+
+<% @user.errors.full_messages.each do |msg| %>
+  <div class= "error"> <%= msg %> </div>
+<% end %>
+

@@ -1,0 +1,15 @@
+<% @title = "Login" %>
+<div class="heading"> Please enter the login information below: </div>
+
+<%= form_tag(:action => :post_login) do %>
+   	  <div class="loginname"><%= label_tag(:login_name, "Login Name:") %> <%= text_field_tag(:login_name) %> </div>
+   	  <div class="password"><%= label_tag(:password, "Password:") %> <%= password_field_tag(:password) %></div>
+    <div class="formrow"> <%= submit_tag("Submit") %></div> 
+<% end %>
+
+<div class="register"> Not a user? <a href = "/users/new" > Register now! </a> </div>
+
+<% if flash[:notice] %>
+  <div class="error"><%= flash[:notice] %></div>
+  <div> <% flash[:notice] = nil %></div>
+<% end %>

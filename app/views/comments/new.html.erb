@@ -1,0 +1,20 @@
+<% @title = "Add Comments" %>
+<% if params[:id] && @photo %>
+  <% if session[:user_id]%>
+    <div class="img"> <%= image_tag @photo.file_name %> </div>
+    <%= form_for(@comment, method: :post, url: {action: :create, id: params[:id]}) do |form| %>
+   	  <div class="formrow"> <%= form.label(:comment, "Comment:")%>
+   	  <%= form.text_field(:comment) %> </div>
+   	  <div class="formrow"> <%= form.submit "Add comment" %> </div>
+    <% end %>
+  <% else %>
+    <div class= "error"> You must log in first! </div>
+  <% end %>
+
+  <% @comment.errors.full_messages.each do |msg| %>
+    <div class= "error"> <%= msg %> </div>
+  <% end %>
+  
+<% else %>
+  <div class= "error"> The photo does not exist! </div>
+<% end %>  

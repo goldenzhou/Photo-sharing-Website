@@ -1,0 +1,27 @@
+<% @title = "User List" %>
+<div class="heading"> All the users are as follows: </div>
+ <table class="oddEven" cellspacing="0">
+    <tr class="header"><td class="user">Users</td></tr>
+    <% @userList.each do |user| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+            <td class="username"> <a href = "/photos/index/<%= user.id %>" > <%= user.first_name %> <%= user.last_name %> </a> </td>
+        </tr>
+    <% end %>
+</table>
+
+<p>Search keyword:</p>
+
+<%= form_tag do %>
+	<%= label_tag :search %>
+	<%= text_field_tag :search, '', :id => "search" %>
+<% end %>
+
+<div id="result">No result yet.</div>
+
+    <script type="text/javascript">
+    //<![CDATA[
+        new Search("/users/search", "search", "result");
+    //]]>
+    </script>
+
+

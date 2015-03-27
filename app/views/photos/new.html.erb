@@ -1,0 +1,15 @@
+<% @title = "Add Photos" %>
+<% if session[:user_id] %>
+  <%= form_for(@photo, method: :post, url: {action: :create}) do |form| %>
+    <div class="formrow"><%= form.label(:photo, "Photo:")%></div>
+    <div class="formrow"><%= form.file_field(:photo) %></div>
+    <div class="formrow"><%= form.submit "Add photo" %></div>
+  <% end %>
+<% else %>
+  <div class="error"> You must log in first! </div>
+<% end %>
+
+<% if flash[:notice] %>
+  <div class="error"><%= flash[:notice] %></div>
+  <% flash[:notice] = nil %>
+<% end %>

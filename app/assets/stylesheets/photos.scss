@@ -1,0 +1,52 @@
+// Place all the styles related to the photos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.image {
+	padding: 0px;
+}
+
+.img {
+	max-height: 500px;
+	display: inline-block;
+	position: relative;
+	line-height: 0px;
+}
+
+.addTag {
+	font-size: 18px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+}
+
+.phototitle {
+	font-size: 20px;
+	font-weight: bold;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.comment {
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
+.name {
+	font-size: 14px;
+	text-align: left;
+	background-color: #eeeff2;
+	width: 500px;
+}
+
+.word {
+	font-size: 14px;
+	text-align: left;
+	background-color: #dfe1e7;
+	width: 500px;
+}
+
+.newcomment {
+	background-color: #687291;
+    color: white;
+    width: 500px;
+}

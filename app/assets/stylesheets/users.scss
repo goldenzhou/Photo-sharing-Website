@@ -1,0 +1,55 @@
+// Place all the styles related to the state controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.heading {
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+.oddEven {
+	font-family: Tahoma;
+	font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr.header {
+    background-color: #687291;
+    color: white;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom: 1px solid white;
+}
+
+
+.username {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom: 1px solid white;
+}
+
+tr.odd {
+	background-color: #eeeff2;
+}
+
+tr.even {
+	background-color: #dfe1e7;
+}
+
+.register {
+    margin-top: 30px;
+}
+
+.password {
+    padding-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px; 
+
+}
+
+
+

@@ -1,0 +1,29 @@
+<% @title = "Add new tag" %>
+<% if params[:id] && @photo %>
+    <div class="img" id="tagImage"> <%= image_tag @photo.file_name, :class => "image" %> <div id="dg"></div> </div>
+    <%= form_for(@tag, method: :post, url: {:action => "createTag", :id => params[:id]}) do |form| %>
+    	<div><%= form.hidden_field "left" %></div>
+    	<div><%= form.hidden_field "top" %></div>
+    	<div><%= form.hidden_field "width" %></div>
+    	<div><%= form.hidden_field "height" %></div>
+    	<p> Please select the user for this tag. </p>
+    	<div class="textlabel"> <%= form.label(:user_id, "User: ") %> </div>
+    	<div class="formInput"> <%= form.select(:user_id, options_from_collection_for_select(@users, 'id', 'full_name')) %> </div>
+
+    	<div> <%= form.submit("Submit")%> </div>
+    <% end %>
+
+    <script type="text/javascript">
+    //<![CDATA[
+        new Tagger("tagImage", "dg", "tag_left", "tag_top", "tag_width", "tag_height");
+    //]]>
+    </script>
+
+   	<% if flash[:notice] %>
+  		<div class="error"><%= flash[:notice] %></div>
+  		<% flash[:notice] = nil %>
+	<% end %>
+
+<% else %>
+  <div class= "error"> The photo does not exist! </div>
+<% end %> 

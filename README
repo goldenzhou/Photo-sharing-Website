@@ -1,0 +1,4 @@
+My search.js file is reusable. It creates a Search class and receives url, search field id and 
+search result field id as parameters.  
+
+We can get the desired result we want by the method in url and show it in the result field at the time we type something in the search field. For example, we can show the google search result of the word we typed simultaneously.

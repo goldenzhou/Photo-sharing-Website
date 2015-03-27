@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+  		<title> <%= @title %> </title>
+  		<%= stylesheet_link_tag    'application', media: 'all' %>
+  		<%= javascript_include_tag 'application', :type => "text/javascript" %>
+  		<%= csrf_meta_tags %>
+	</head>
+	<body class = "background">
+		<div class = "signature">
+			<%= image_tag "signature2.png" %>
+		</div>
+		<% if session[:user_id] %>
+			<div class="banner"> Hi, <%= session[:first_name] %>! <a href = "/users/logout" > Logout </a> </div>
+		<% else %>
+			<div class="banner"> <a href = "/users/login" > Login </a> </div>
+		<% end %>
+		<%= yield %>
+
+	</body>
+</html>
